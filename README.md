@@ -8,9 +8,19 @@ Eigenständig installierbare Edition des FHEM-Styles von [Matthias Kleine (Klein
 
 ## Installation per Copy & Paste
 
+Die folgenden Befehle einzeln und in dieser Reihenfolge im FHEM-Kommandoeingabefeld ausführen. Nach jedem Befehl die Rückmeldung abwarten; nicht alle Befehle gemeinsam kopieren.
+
 ```text
 update add https://raw.githubusercontent.com/parussel/fhem-style-153er-netz/main/controls_153er_netz_theme.txt
+```
+
+```text
 update check 153er_netz_theme
+```
+
+Erst wenn die Vorschau ausschließlich Dateien mit `153er-netz` beziehungsweise `153er_netz` nennt, die Installation ausführen:
+
+```text
 update all 153er_netz_theme
 ```
 
