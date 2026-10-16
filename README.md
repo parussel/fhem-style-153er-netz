@@ -28,29 +28,88 @@ Wenn FHEM nach der Installation `shutdown restart` empfiehlt, FHEM damit neu sta
 
 Danach unter **Select Style** den Style `153er_netz` auswählen. Auf der anschließenden Meldungsseite nicht wiederholt den Browser-Neuladen-Knopf verwenden, da dadurch der Auswahlbefehl erneut aufgerufen werden kann. Stattdessen auf das FHEM-Logo beziehungsweise die Startseite wechseln oder die FHEM-Adresse ohne einen Zusatz hinter `/fhem` öffnen. Falls der Browser noch alte Style-Dateien zwischengespeichert hat, dort einmal mit `Strg` + `F5` vollständig neu laden.
 
-Optionale Einstellungen wie beim Original:
+Optionale Einstellungen wie beim Original (für den Style nicht erforderlich):
+
+Vorher die bestehenden Werte einzeln prüfen:
 
 ```text
-attr WEB JavaScripts codemirror/fhem_codemirror.js
+list WEB JavaScripts
+```
+
+```text
+list WEB codemirrorParam
+```
+
+```text
+list WEB roomIcons
+```
+
+Die folgenden Ergänzungen nur ausführen, wenn der jeweilige Bestandteil noch nicht vorhanden ist. `JavaScripts` und `roomIcons` werden mit `attr -a` ergänzt, damit andere vorhandene Einträge erhalten bleiben:
+
+```text
+attr -a WEB JavaScripts codemirror/fhem_codemirror.js
+```
+
+```text
+attr -a WEB roomIcons Save.config:message_attention
+```
+
+`codemirrorParam` ist dagegen ein zusammenhängender Einstellungswert. Der folgende Befehl ersetzt einen eventuell vorhandenen Wert vollständig und sollte daher nur nach Prüfung beziehungsweise Sicherung des bisherigen Werts verwendet werden:
+
+```text
 attr WEB codemirrorParam { "theme": "blackboard", "lineNumbers":true, "lineWrapping": true, "height": "auto", "autocomplete": true }
-attr WEB roomIcons Save.config:message_attention
 ```
 
 ## Rückwechsel und Deinstallation
 
-Zuerst unter **Select Style** einen anderen Style auswählen. Dann die Updatequelle abmelden:
+1. Unter **Select Style** zuerst einen anderen installierten Style auswählen.
+2. Über das FHEM-Logo beziehungsweise die FHEM-Startseite prüfen, dass der andere Style vollständig geladen wurde.
+3. Falls FHEM eine ungespeicherte Änderung anzeigt, `save` ausführen.
+4. Erst danach die Updatequelle im FHEM-Kommandoeingabefeld abmelden:
 
 ```text
 update delete https://raw.githubusercontent.com/parussel/fhem-style-153er-netz/main/controls_153er_netz_theme.txt
 ```
 
-Für eine vollständige Dateientfernung anschließend im FHEM-Installationsverzeichnis:
+Das Deinstallationsskript ist bewusst nicht Bestandteil der FHEM-Installation. Es wird für die Prüfung direkt aus diesem Repository nach `/tmp` geladen:
 
 ```sh
-sudo ./uninstall.sh /opt/fhem
+curl -fL --proto '=https' --tlsv1.2 -o /tmp/uninstall-153er-netz.sh https://raw.githubusercontent.com/parussel/fhem-style-153er-netz/main/uninstall.sh
 ```
 
-Das Skript entfernt ausschließlich Dateien und Verzeichnisse der Edition.
+Zuerst nur anzeigen, welche vorhandenen Dateien entfernt würden:
+
+```sh
+sh /tmp/uninstall-153er-netz.sh --dry-run /opt/fhem
+```
+
+Erst wenn diese Vorschau ausschließlich die Dateien der `153er-netz.de Edition` enthält, die Entfernung ausdrücklich starten:
+
+```sh
+sudo sh /tmp/uninstall-153er-netz.sh --remove /opt/fhem
+```
+
+Das Skript entfernt einzeln genau die 18 ausgelieferten Theme-Dateien. Verzeichnisse werden nur entfernt, wenn sie anschließend leer sind. Eigene oder später hinzugefügte Dateien bleiben dadurch erhalten.
+
+### Optionale Einstellungen zurücknehmen
+
+Die drei oben genannten `WEB`-Einstellungen sind vom Style unabhängig, stören nach dessen Entfernung nicht und werden daher nicht automatisch verändert. Wer sie ausschließlich für diese Installation ergänzt hat, kann die beiden ergänzten Bestandteile gezielt entfernen:
+
+```text
+attr -r WEB JavaScripts codemirror/fhem_codemirror.js
+```
+
+```text
+attr -r WEB roomIcons Save.config:message_attention
+```
+
+`codemirrorParam` nur dann vollständig entfernen, wenn das Attribut vorher nicht vorhanden war und ausschließlich durch die obige Empfehlung gesetzt wurde:
+
+```text
+deleteattr WEB codemirrorParam
+```
+
+Anschließend die angezeigte Konfigurationsänderung mit `save` sichern. Wenn frühere eigene Werte vorhanden waren, diese statt einer Löschung aus der eigenen Sicherung wiederherstellen.
 
 ## Hintergrundanimation
 
@@ -60,6 +119,10 @@ Der Hintergrund bewegt sich langsam über einen 52-Sekunden-Zyklus. Menüs, Tabe
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tests/verify_theme.ps1
+```
+
+```sh
+sh tests/test_uninstall.sh
 ```
 
 ## Dank
