@@ -1,100 +1,53 @@
-# FHEM Style: haus-automatisierung.com (v2)
+# FHEM Style – 153er-netz.de Edition
 
-Mit diesem Style wird die FHEM-Oberfläche etwas anschaulicher - "Look and Feel" sind dabei an das Webdesign der Seite [haus-automatisierung.com](https://haus-automatisierung.com/) angelehnt.
+Eigenständig installierbare Edition des FHEM-Styles von Matthias Kleine (Kleinor), basierend auf Version 2.19. Layout, Abstände, Größen und Bedienfunktionen bleiben unverändert. Geändert sind Theme-Namespace, Logo, Hintergrund und die primäre Akzentfarbe.
 
-## Installation
+> Das derzeit enthaltene Fisch-Kreuz-Netz-Logo ist ein freigegebener Konzeptentwurf. Es wird durch das offizielle Original ersetzt, sobald dieses als freigestellte Quelldatei vorliegt.
 
-1. Hinzufügen des neuen Themes in Version 2
+## Installation per Copy & Paste
 
+```text
+update add https://raw.githubusercontent.com/parussel/fhem-style-153er-netz/main/controls_153er_netz_theme.txt
+update check 153er_netz_theme
+update all 153er_netz_theme
 ```
-update add https://raw.githubusercontent.com/klein0r/fhem-style-haus-automatisierung/version-2/controls_ha_theme.txt
-update check ha_theme
-update all ha_theme
-```
 
-2. Select Style -> hausautomatisierung_com
+Danach unter **Select Style** den Style `153er_netz` auswählen und die Seite neu laden.
 
-3. Ein paar Anpassungen am Web-Device:
+Optionale Einstellungen wie beim Original:
 
-```
+```text
 attr WEB JavaScripts codemirror/fhem_codemirror.js
 attr WEB codemirrorParam { "theme": "blackboard", "lineNumbers":true, "lineWrapping": true, "height": "auto", "autocomplete": true }
 attr WEB roomIcons Save.config:message_attention
 ```
 
-Einmal speichern und neu laden - fertig.
+## Rückwechsel und Deinstallation
 
-## Entwicklungsumgebung aufsetzen
+Zuerst unter **Select Style** einen anderen Style auswählen. Dann die Updatequelle abmelden:
 
-**Bitte keine Pull-Requests für CSS-Dateien einreichen, diese werden per SASS generiert.**
-
-Der Style basiert auf [SASS](https://sass-lang.com/) / [Compass](http://compass-style.org/). So können die einzelnen Bereiche unterteilt werden und der Style wird viel übersichtlicher und leichter zu warten / erweitern.
-
-Du brauchst:
-
-- git [Doku](https://git-scm.com/book/de/v1/Los-geht%E2%80%99s-Git-installieren)
-- SASS [Doku](https://sass-lang.com/install)
-- Compass [Doku](http://compass-style.org/install/)
-
-Dann die aktuellen Dateien von GitHub holen (oder aus einem eigenen Fork):
-
-```
-cd /opt/fhem/
-git clone -b version-2 git@github.com:klein0r/fhem-style-haus-automatisierung.git
+```text
+update delete https://raw.githubusercontent.com/parussel/fhem-style-153er-netz/main/controls_153er_netz_theme.txt
 ```
 
-Dann ein paar Symlinks erstellen:
+Für eine vollständige Dateientfernung anschließend im FHEM-Installationsverzeichnis:
 
-```
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/hausautomatisierung-com /opt/fhem/www/hausautomatisierung-com
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/images/hausautomatisierung_com /opt/fhem/www/images/hausautomatisierung_com
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/pgm2/hausautomatisierung_comfloorplanstyle.css /opt/fhem/www/pgm2/hausautomatisierung_comfloorplanstyle.css
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/pgm2/hausautomatisierung_com.js /opt/fhem/www/pgm2/hausautomatisierung_com.js
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/pgm2/hausautomatisierung_comstyle.css /opt/fhem/www/pgm2/hausautomatisierung_comstyle.css
-ln -s /opt/fhem/fhem-style-haus-automatisierung/www/pgm2/hausautomatisierung_comsvg_style.css /opt/fhem/www/pgm2/hausautomatisierung_comsvg_style.css
+```sh
+sudo ./uninstall.sh /opt/fhem
 ```
 
-SASS wartet auf Änderungen und baut bei Bedarf das CSS neu:
+Das Skript entfernt ausschließlich Dateien und Verzeichnisse der Edition.
 
+## Hintergrundanimation
+
+Der Hintergrund bewegt sich langsam über einen 52-Sekunden-Zyklus. Menüs, Tabellen und Steuerelemente bewegen sich nicht. Bei `prefers-reduced-motion: reduce` ist die Animation deaktiviert.
+
+## Entwicklung und Prüfung
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tests/verify_theme.ps1
 ```
-cd /opt/fhem/fhem-style-haus-automatisierung
-compass watch
-```
 
-Dann einfach die SCSS-Dateien bearbeiten.
+## Herkunft und Lizenz
 
-## Fehler melden
-
-Bitte [hier](https://github.com/klein0r/fhem-style-haus-automatisierung/issues) einen Issue erstellen
-
-## Vorschau
-
-![FHEM Style](https://raw.githubusercontent.com/klein0r/fhem-style-haus-automatisierung/version-2/preview.png)
-
-## Smart-Home-Icons:
-
-Thanks @ https://dribbble.com/shots/2084609-Smart-House-Icon-Set-Free
-
-## License
-
-MIT License
-
-Copyright (c) 2021 Matthias Kleine
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Quellcode unter MIT-Lizenz, abgeleitet von [klein0r/fhem-style-haus-automatisierung](https://github.com/klein0r/fhem-style-haus-automatisierung), Version 2.19. Bildquellen stehen in [ASSETS.md](ASSETS.md).

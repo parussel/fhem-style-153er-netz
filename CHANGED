@@ -1,12 +1,8 @@
-FHEM haus-automatisierung.com custom theme last changes:
-2021-03-10
-- Compass raus
-- Revert "added mobile preview image"
-- Revert "Compass is not necessary needed"
-- Revert "Not sure about the indention of window scroll event. Lets keep things visible"
-- Revert "Responsive design"
-- Revert "Compass raus"
-- 2.18
-- Back to 2.16 style
-- Version 2.18
-- Removed attribute groups (since fhemweb adopted that feature)
+FHEM Style – 153er-netz.de Edition changes:
+2026-10-16
+- Created independent 153er_netz runtime namespace from upstream version 2.19
+- Added fish/cross/net concept logo with 153er-/netz.de typography
+- Added dark navy network background with muted gold nodes
+- Added slow background-only animation and reduced-motion fallback
+- Added independent FHEM control manifest, install helper, and guarded uninstall helper
+- Preserved upstream layout dimensions and JavaScript behavior

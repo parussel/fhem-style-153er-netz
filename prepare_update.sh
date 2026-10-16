@@ -1,18 +1,18 @@
-#!/bin/bash
+#!/bin/sh
+set -eu
 
-#compass compile --force
+OUT="controls_153er_netz_theme.txt"
+STAMP="$(date '+%Y-%m-%d_%H:%M:%S')"
+: > "$OUT"
 
-rm controls_ha_theme.txt
-
-echo "MOV ./www/hausautomatisierung-com/custom.js unused" >> controls_ha_theme.txt
-
-find ./www -type f \( ! -iname ".*" \) -print0 | while IFS= read -r -d '' f;
-do
-    out="UPD "$(stat -f "%Sm" -t "%Y-%m-%d_%T" $f)" "$(stat -f%z $f)" ${f}"
-    echo ${out//.\//} >> controls_ha_theme.txt
+find ./www -type f \( \
+  -path './www/pgm2/153er_netz*' -o \
+  -path './www/153er-netz/*' -o \
+  -path './www/images/153er_netz/*' \
+\) -print | LC_ALL=C sort | while IFS= read -r file; do
+  size="$(wc -c < "$file" | tr -d ' ')"
+  clean="${file#./}"
+  printf 'UPD %s %s %s\n' "$STAMP" "$size" "$clean" >> "$OUT"
 done
 
-# CHANGED file
-echo "FHEM haus-automatisierung.com custom theme last changes:" > CHANGED
-echo $(date +"%Y-%m-%d") >> CHANGED
-git log -n 10 --reverse --pretty="format:- %s" >> CHANGED
+printf 'Generated %s\n' "$OUT"

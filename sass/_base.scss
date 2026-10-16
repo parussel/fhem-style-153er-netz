@@ -1,7 +1,8 @@
 body {
-    background: #354d69 url(../hausautomatisierung-com/images/bg_wrapper.jpg) no-repeat center 0 fixed;
+    background: #0a2344 url(../153er-netz/images/bg_wrapper.jpg) no-repeat center 0 fixed;
     background-size: cover;
     background-position: top center;
+    animation: netzWabern 52s ease-in-out infinite alternate;
     color: #fff;
     font-family: 'Open Sans', sans-serif;
     font-size: $default-fontsize;
@@ -43,7 +44,7 @@ button.dist {
 }
 
 #logo {
-    background: url(../hausautomatisierung-com/images/haus_automatisierung.png) no-repeat;
+    background: url(../153er-netz/images/153er_netz.png) no-repeat;
     height: 120px;
     margin-left: 40px;
     margin-top: 10px;
@@ -76,8 +77,17 @@ button.dist {
 }
 
 input[type="text"] {
-    border: 1px #e56524 solid;
+    border: 1px #d6a62e solid;
     background: none;
+}
+
+@keyframes netzWabern {
+    from { background-position: 50% 0; }
+    to { background-position: calc(50% + 18px) 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body { animation: none; }
 }
 
 #hdr {
