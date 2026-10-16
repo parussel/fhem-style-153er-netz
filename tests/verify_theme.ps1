@@ -49,6 +49,14 @@ if ($menu -match 'rgb\(229,\s*101,\s*36\)') { $failures.Add('Legacy orange remai
 if ($base -match '#e56524') { $failures.Add('Legacy orange remains in base form border') }
 if ($base -match '@media\s*\(max-width:\s*798px\)') { $failures.Add('Forbidden version-3 responsive breakpoint found') }
 
+foreach ($cssRelative in @('www/pgm2/153er_netzstyle.css', 'www/pgm2/153er_netzfloorplanstyle.css')) {
+    $css = Get-Content -Raw (Join-Path $root $cssRelative)
+    if ($css -match 'hausautomatisierung-com') { $failures.Add("Shipped CSS references upstream branding path: $cssRelative") }
+    if ($css -notmatch '@keyframes\s+netzWabern') { $failures.Add("Shipped CSS lacks background animation: $cssRelative") }
+    if ($css -notmatch 'prefers-reduced-motion:\s*reduce') { $failures.Add("Shipped CSS lacks reduced-motion fallback: $cssRelative") }
+    if ($css -notmatch '#0a2344') { $failures.Add("Shipped CSS lacks navy fallback: $cssRelative") }
+}
+
 $controlPath = Join-Path $root 'controls_153er_netz_theme.txt'
 if (Test-Path $controlPath) {
     $control = Get-Content -Raw $controlPath
@@ -64,6 +72,12 @@ if (Test-Path $controlPath) {
         if (-not (Test-Path -LiteralPath $target)) { $failures.Add("Control target missing: $relative"); continue }
         if ((Get-Item -LiteralPath $target).Length -ne $declaredSize) { $failures.Add("Control size mismatch: $relative") }
     }
+    $manifestPaths = @(Get-Content $controlPath | ForEach-Object { if ($_ -match '^UPD\s+\S+\s+\d+\s+(.+)$') { $Matches[1] } })
+    $runtimePaths = @(Get-ChildItem (Join-Path $root 'www') -Recurse -File | ForEach-Object {
+        $relative = $_.FullName.Substring($root.Length + 1).Replace('\', '/')
+        if ($relative -like 'www/pgm2/153er_netz*' -or $relative -like 'www/153er-netz/*' -or $relative -like 'www/images/153er_netz/*') { $relative }
+    })
+    if (@(Compare-Object $runtimePaths $manifestPaths).Count -ne 0) { $failures.Add('Control manifest and owned runtime file set differ') }
 }
 
 $jsPath = Join-Path $root 'www/pgm2/153er_netz.js'
