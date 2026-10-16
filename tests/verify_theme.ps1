@@ -70,7 +70,9 @@ if (Test-Path $controlPath) {
         $relative = $Matches[2]
         $target = Join-Path $root $relative
         if (-not (Test-Path -LiteralPath $target)) { $failures.Add("Control target missing: $relative"); continue }
-        if ((Get-Item -LiteralPath $target).Length -ne $declaredSize) { $failures.Add("Control size mismatch: $relative") }
+        $objectId = (& git -C $root hash-object -w "--path=$relative" -- $target).Trim()
+        $publishedSize = [int64](& git -C $root cat-file -s $objectId)
+        if ($publishedSize -ne $declaredSize) { $failures.Add("Control published-size mismatch: $relative (declared $declaredSize, Git blob $publishedSize)") }
     }
     $manifestPaths = @(Get-Content $controlPath | ForEach-Object { if ($_ -match '^UPD\s+\S+\s+\d+\s+(.+)$') { $Matches[1] } })
     $runtimePaths = @(Get-ChildItem (Join-Path $root 'www') -Recurse -File | ForEach-Object {

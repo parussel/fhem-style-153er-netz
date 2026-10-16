@@ -10,8 +10,9 @@ find ./www -type f \( \
   -path './www/153er-netz/*' -o \
   -path './www/images/153er_netz/*' \
 \) -print | LC_ALL=C sort | while IFS= read -r file; do
-  size="$(wc -c < "$file" | tr -d ' ')"
   clean="${file#./}"
+  object_id="$(git hash-object -w --path="$clean" "$file")"
+  size="$(git cat-file -s "$object_id")"
   printf 'UPD %s %s %s\n' "$STAMP" "$size" "$clean" >> "$OUT"
 done
 
