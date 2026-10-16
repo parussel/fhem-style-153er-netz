@@ -7,6 +7,7 @@ FHEM Style – 153er-netz.de Edition changes:
 - Added independent FHEM control manifest, install helper, and guarded uninstall helper
 - Preserved upstream layout dimensions and JavaScript behavior
 
-2026-10-16 1.0.1
-- Replaced the browser favicon with the approved fish-cross-net symbol and added cache busting.
+2026-10-16 1.0.2
+- Added a theme-specific browser favicon and cache busting.
 - Highlighted FHEM's save-config icon only while there are unsaved configuration changes.
+- Replaced the theme logo and favicon with the user-approved asymmetrical fish-cross-net design.
