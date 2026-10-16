@@ -15,3 +15,7 @@ FHEM Style – 153er-netz.de Edition changes:
 2026-10-16 1.0.3
 - Lowered the favicon net slightly to increase visual separation from the fish.
 - Rebuilt the multi-resolution favicon and refreshed its cache-busting version.
+
+2026-10-17 1.0.4
+- Refined the layout logo proportions and lowered the net slightly.
+- Updated the matching multi-resolution favicon and cache-busting version.

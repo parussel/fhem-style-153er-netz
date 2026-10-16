@@ -94,7 +94,7 @@ if (Test-Path $jsPath) {
     if (-not $js.Contains('parussel/fhem-style-153er-netz/issues')) { $failures.Add('JavaScript issue link is not namespaced') }
     $upstreamJs = Get-Content -Raw (Join-Path $root 'www/pgm2/hausautomatisierung_com.js')
     if ($js -notmatch 'favicon\.ico\?v=') { $failures.Add('JavaScript does not cache-bust the edition favicon') }
-    $normalizedJs = $js.Replace("var themeVersion = '1.0.3';", "var themeVersion = '2.19';")
+    $normalizedJs = $js.Replace("var themeVersion = '1.0.4';", "var themeVersion = '2.19';")
     $normalizedJs = [regex]::Replace($normalizedJs, '(?s)\r?\n    // Point the browser at this edition.*?\r?\n    }\r?\n', '')
     $normalizedJs = $normalizedJs.Replace(
         'https://github.com/parussel/fhem-style-153er-netz/issues/',
