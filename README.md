@@ -24,7 +24,9 @@ Erst wenn die Vorschau ausschließlich Dateien mit `153er-netz` beziehungsweise 
 update all 153er_netz_theme
 ```
 
-Danach unter **Select Style** den Style `153er_netz` auswählen und die Seite neu laden.
+Wenn FHEM nach der Installation `shutdown restart` empfiehlt, FHEM damit neu starten und warten, bis die Oberfläche wieder erreichbar ist.
+
+Danach unter **Select Style** den Style `153er_netz` auswählen. Auf der anschließenden Meldungsseite nicht wiederholt den Browser-Neuladen-Knopf verwenden, da dadurch der Auswahlbefehl erneut aufgerufen werden kann. Stattdessen auf das FHEM-Logo beziehungsweise die Startseite wechseln oder die FHEM-Adresse ohne einen Zusatz hinter `/fhem` öffnen. Falls der Browser noch alte Style-Dateien zwischengespeichert hat, dort einmal mit `Strg` + `F5` vollständig neu laden.
 
 Optionale Einstellungen wie beim Original:
 
