@@ -33,6 +33,8 @@ $menu = Get-Content -Raw $menuPath
 $upstreamFavicon = (Get-FileHash (Join-Path $root 'www/images/hausautomatisierung_com/favicon.ico') -Algorithm SHA256).Hash
 $editionFavicon = (Get-FileHash (Join-Path $root 'www/images/153er_netz/favicon.ico') -Algorithm SHA256).Hash
 if ($upstreamFavicon -eq $editionFavicon) { $failures.Add('Edition still contains the upstream branded favicon') }
+$faviconSvg = Get-Content -Raw (Join-Path $root 'assets/153er-netz-favicon-source.svg')
+if ($faviconSvg -notmatch '<g[^>]*transform="translate\(0, ?7\)"') { $failures.Add('Favicon net is not separated below the fish by the approved offset') }
 
 foreach ($layoutRule in @('$menuWidth: 300px;', '$maxWidthContent: 1000px;', '$default-fontsize: 13px;', '$large-fontsize: 16px;')) {
     if (-not $vars.Contains($layoutRule)) { $failures.Add("Layout constant changed or missing: $layoutRule") }
@@ -92,7 +94,7 @@ if (Test-Path $jsPath) {
     if (-not $js.Contains('parussel/fhem-style-153er-netz/issues')) { $failures.Add('JavaScript issue link is not namespaced') }
     $upstreamJs = Get-Content -Raw (Join-Path $root 'www/pgm2/hausautomatisierung_com.js')
     if ($js -notmatch 'favicon\.ico\?v=') { $failures.Add('JavaScript does not cache-bust the edition favicon') }
-    $normalizedJs = $js.Replace("var themeVersion = '1.0.2';", "var themeVersion = '2.19';")
+    $normalizedJs = $js.Replace("var themeVersion = '1.0.3';", "var themeVersion = '2.19';")
     $normalizedJs = [regex]::Replace($normalizedJs, '(?s)\r?\n    // Point the browser at this edition.*?\r?\n    }\r?\n', '')
     $normalizedJs = $normalizedJs.Replace(
         'https://github.com/parussel/fhem-style-153er-netz/issues/',

@@ -19,7 +19,7 @@ function getClock() {
 
 jQuery(document).ready(function ($) {
 
-    var themeVersion = '1.0.2';
+    var themeVersion = '1.0.3';
 
     // Point the browser at this edition's favicon and bust the old shared FHEM icon cache.
     var themeCssHref = $('link[rel="stylesheet"][href*="153er_netzstyle.css"]').first().attr('href');

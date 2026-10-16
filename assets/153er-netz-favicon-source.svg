@@ -2,7 +2,7 @@
   <rect width="128" height="128" rx="17" fill="#0a2344"/>
   <g fill="none" stroke="#d6a62e" stroke-linecap="round" stroke-linejoin="round">
     <!-- Irregular, open net sits behind the fish and trails off the frame. -->
-    <g stroke-width="1.8" opacity=".58">
+    <g stroke-width="1.8" opacity=".58" transform="translate(0, 7)">
       <path d="M3 104c17-6 30-5 44 1 16 7 29 7 43 0 14-7 24-9 38-6"/>
       <path d="M0 117c18-7 31-8 47-1 15 7 30 8 46 1 12-5 23-7 35-5"/>
       <path d="M14 97c7 8 12 18 16 31M42 99c4 9 7 18 9 31M71 101c-1 9-1 18 0 29M98 97c-5 9-8 20-9 33M119 94c-7 10-11 22-13 36"/>
