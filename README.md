@@ -2,6 +2,8 @@
 
 Eigenständig installierbare Edition des FHEM-Styles von Matthias Kleine (Kleinor), basierend auf Version 2.19. Layout, Abstände, Größen und Bedienfunktionen bleiben unverändert. Geändert sind Theme-Namespace, Logo, Hintergrund und die primäre Akzentfarbe.
 
+![Vorschau des FHEM Styles – 153er-netz.de Edition](preview.png)
+
 > Das derzeit enthaltene Fisch-Kreuz-Netz-Logo ist ein freigegebener Konzeptentwurf. Es wird durch das offizielle Original ersetzt, sobald dieses als freigestellte Quelldatei vorliegt.
 
 ## Installation per Copy & Paste
