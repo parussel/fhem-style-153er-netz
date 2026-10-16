@@ -4,7 +4,7 @@ Eigenständig installierbare Edition des FHEM-Styles von [Matthias Kleine (Klein
 
 ![Vorschau des FHEM Styles – 153er-netz.de Edition](preview.png)
 
-> Das derzeit enthaltene Fisch-Kreuz-Netz-Logo ist ein freigegebener Konzeptentwurf. Es wird durch das offizielle Original ersetzt, sobald dieses als freigestellte Quelldatei vorliegt.
+Das Favicon verwendet das freigegebene Fisch-Kreuz-Netz-Symbol. Beim Laden des Themes wird die Favicon-Adresse versionsgebunden gesetzt, damit Browser nicht am bisherigen FHEM-Standardicon festhalten.
 
 ## Installation per Copy & Paste
 

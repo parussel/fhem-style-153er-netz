@@ -6,3 +6,7 @@ FHEM Style – 153er-netz.de Edition changes:
 - Added slow background-only animation and reduced-motion fallback
 - Added independent FHEM control manifest, install helper, and guarded uninstall helper
 - Preserved upstream layout dimensions and JavaScript behavior
+
+2026-10-16 1.0.1
+- Replaced the browser favicon with the approved fish-cross-net symbol and added cache busting.
+- Highlighted FHEM's save-config icon only while there are unsaved configuration changes.

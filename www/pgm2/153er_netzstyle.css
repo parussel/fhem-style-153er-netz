@@ -260,6 +260,7 @@ textarea#console { white-space: normal; margin-top: 10px; margin-bottom: 10px; b
 #menu table.room .custom-menu-entry { color: #d6a62e; }
 #menu table.room img.icon, #menu table.room svg.icon { width: 20px; height: 20px; margin: 0; position: absolute; right: 10px; top: 7px; }
 #menu table.room #saveCheck { margin-top: -33px; background: transparent; border-right: 5px #d6a62e solid; border-left: 5px #d6a62e solid; text-indent: -9999px; margin-left: 220px; }
+#menu table.room tr:has(#saveCheck[style*="visible"]) img.icon { background: #d62828; border-radius: 50%; box-shadow: 0 0 0 3px #d62828; filter: brightness(0) invert(1); }
 #menu table.room tr.sel a { background: #d6a62e; color: #fff; }
 #menu table.room tr.sel svg.icon { fill: #fff; }
 #menu table.room tr.sel td a:after { border-bottom: 17px solid transparent; border-left: 13px solid #d6a62e; border-top: 17px solid transparent; content: " "; height: 0; margin-top: -17px; position: absolute; right: -13px; top: 50%; width: 0; }

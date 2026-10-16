@@ -7,7 +7,9 @@
 
 ## Upstream functional icons
 
-Files under `www/images/153er_netz/` are unchanged functional Smart Home icons inherited from the MIT-licensed upstream repository. The upstream README credits the Smart House Icon Set Free published on Dribbble.
+`www/images/153er_netz/favicon.ico` is the edition's custom favicon, drawn from the approved fish/cross/open-net composition. Its editable vector source is `assets/153er-netz-favicon-source.svg`.
+
+All other files under `www/images/153er_netz/` are unchanged functional Smart Home icons inherited from the MIT-licensed upstream repository. The upstream README credits the Smart House Icon Set Free published on Dribbble.
 
 ## Upstream code
 

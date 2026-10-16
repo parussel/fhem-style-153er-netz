@@ -19,7 +19,15 @@ function getClock() {
 
 jQuery(document).ready(function ($) {
 
-    var themeVersion = '1.0.0';
+    var themeVersion = '1.0.1';
+
+    // Point the browser at this edition's favicon and bust the old shared FHEM icon cache.
+    var themeCssHref = $('link[rel="stylesheet"][href*="153er_netzstyle.css"]').first().attr('href');
+    if (themeCssHref) {
+        var themeCssPath = new URL(themeCssHref, window.location.href).pathname;
+        var themeRoot = themeCssPath.substring(0, themeCssPath.indexOf('/pgm2/'));
+        $('link[rel~="icon"]').attr('href', themeRoot + '/images/153er_netz/favicon.ico?v=' + themeVersion);
+    }
 
     // attr WEB hiddenroom input -> Ansicht anpassen
     if ($('#hdr .maininput').length == 0) {

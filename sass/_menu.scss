@@ -90,6 +90,15 @@
             margin-left: 220px;
         }
 
+        // FHEM toggles saveCheck visibility when configuration changes.
+        // Highlight the existing room icon only while unsaved changes exist.
+        tr:has(#saveCheck[style*="visible"]) img.icon {
+            background: #d62828;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px #d62828;
+            filter: brightness(0) invert(1);
+        }
+
         tr.sel {
             a {
                 background: $primary-color;
