@@ -2,6 +2,8 @@
 
 Eigenständig installierbare Edition des FHEM-Styles von [Matthias Kleine (Kleinor)](https://github.com/klein0r/fhem-style-haus-automatisierung), basierend auf Version 2.19. Layout, Abstände, Größen und Bedienfunktionen bleiben unverändert. Geändert sind Theme-Namespace, Logo, Hintergrund und die primäre Akzentfarbe.
 
+**Projektinformationen:** [FHEM-Projekte im 153er Netz](https://153er-netz.de/seiten/entwicklung/fhem.html)
+
 ![Vorschau des FHEM Styles – 153er-netz.de Edition](preview.png)
 
 Das Favicon verwendet das freigegebene Fisch-Kreuz-Netz-Symbol. Beim Laden des Themes wird die Favicon-Adresse versionsgebunden gesetzt, damit Browser nicht am bisherigen FHEM-Standardicon festhalten.
