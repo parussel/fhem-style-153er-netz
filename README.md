@@ -117,16 +117,6 @@ Anschließend die angezeigte Konfigurationsänderung mit `save` sichern. Wenn fr
 
 Der Hintergrund bewegt sich langsam über einen 52-Sekunden-Zyklus. Menüs, Tabellen und Steuerelemente bewegen sich nicht. Bei `prefers-reduced-motion: reduce` ist die Animation deaktiviert.
 
-## Entwicklung und Prüfung
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tests/verify_theme.ps1
-```
-
-```sh
-sh tests/test_uninstall.sh
-```
-
 ## Dank
 
 Ein besonderer Dank gilt [Matthias Kleine (Kleinor)](https://github.com/klein0r/fhem-style-haus-automatisierung). Sein FHEM-Style und seine weitere Arbeit rund um FHEM haben meine eigene Hausautomation und dieses Projekt entscheidend vorangebracht. Diese Edition wäre ohne seine sorgfältige Vorarbeit nicht entstanden.
